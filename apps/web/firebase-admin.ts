@@ -1,4 +1,4 @@
-import { App, getApp, getApps, initializeApp } from "firebase-admin/app";
+import { App, cert, getApp, getApps, initializeApp } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 
 const serviceKey = require("@/service_key.json");
@@ -7,7 +7,7 @@ let app: App;
 
 if (getApps().length === 0) {
 	app = initializeApp({
-		credential: serviceKey,
+		credential: cert(serviceKey),
 	});
 } else {
 	app = getApp();
