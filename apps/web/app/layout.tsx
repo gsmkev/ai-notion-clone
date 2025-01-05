@@ -29,9 +29,9 @@ export default function RootLayout({
 					<Header />
 					<div className="flex min-h-screen">
 						<Sidebar />
-					</div>
-					<div className="flex-1 p-4 bg-gray-100 overflow-y-auto scrollbar-hidden">
-						{children}
+						<div className="flex-1 p-4 bg-gray-100 overflow-y-auto scrollbar-hidden">
+							{children}
+						</div>
 					</div>
 				</Providers>
 			</body>
