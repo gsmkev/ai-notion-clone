@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "@workspace/ui/globals.css";
 import { Providers } from "@/components/providers";
 import Header from "@/components/Header";
+import Sidebar from "@/components/Sidebar";
 
 const fontSans = Geist({
 	subsets: ["latin"],
@@ -26,7 +27,12 @@ export default function RootLayout({
 			>
 				<Providers>
 					<Header />
-					{children}
+					<div className="flex min-h-screen">
+						<Sidebar />
+					</div>
+					<div className="flex-1 p-4 bg-gray-100 overflow-y-auto scrollbar-hidden">
+						{children}
+					</div>
 				</Providers>
 			</body>
 		</html>
