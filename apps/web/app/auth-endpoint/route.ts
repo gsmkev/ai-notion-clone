@@ -7,7 +7,25 @@ export async function POST(req: NextRequest) {
 	auth.protect();
 
 	const { sessionClaims } = await auth();
-	const { room } = await req.json();
+
+	let body;
+	try {
+		body = await req.json();
+	} catch {
+		return NextResponse.json(
+			{ message: "Invalid JSON input" },
+			{ status: 400 }
+		);
+	}
+
+	const { room } = body;
+
+	if (!room) {
+		return NextResponse.json(
+			{ message: "Room ID is required" },
+			{ status: 400 }
+		);
+	}
 
 	const session = liveblocks.prepareSession(sessionClaims?.email!, {
 		userInfo: {
