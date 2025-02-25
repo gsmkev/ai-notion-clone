@@ -9,6 +9,7 @@ import {
 	BreadcrumbPage,
 	BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Fragment } from "react";
 
 function Breadcrumbs() {
 	const path = usePathname();
@@ -19,18 +20,19 @@ function Breadcrumbs() {
 				<BreadcrumbList>
 					<BreadcrumbItem>
 						<BreadcrumbLink href="/">Home</BreadcrumbLink>
-						{segments.length > 0 && <BreadcrumbSeparator />}
 					</BreadcrumbItem>
-
-					{segments.map((segment, index) => {
-						const isLast = index === segments.length - 1;
-						return (
-							<BreadcrumbItem key={segment}>
-								<BreadcrumbPage>{segment}</BreadcrumbPage>
-								{!isLast && <BreadcrumbSeparator />}
+					{segments.map((segment, index) => (
+						<Fragment key={index}>
+							<BreadcrumbSeparator />
+							<BreadcrumbItem>
+								{index === segments.length - 1 ? (
+									<BreadcrumbPage>{segment}</BreadcrumbPage>
+								) : (
+									<BreadcrumbLink>{segment}</BreadcrumbLink>
+								)}
 							</BreadcrumbItem>
-						);
-					})}
+						</Fragment>
+					))}
 				</BreadcrumbList>
 			</Breadcrumb>
 		</div>
