@@ -8,8 +8,8 @@ async function DocumentLayout({
 	children: React.ReactNode;
 	params: { id: string };
 }) {
-	const { id } = params;
-	auth.protect();
+	await auth.protect();
+	const { id } = await Promise.resolve(params);
 	return <RoomProvider roomId={id}>{children}</RoomProvider>;
 }
 
