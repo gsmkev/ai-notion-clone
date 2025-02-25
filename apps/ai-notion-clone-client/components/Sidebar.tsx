@@ -59,20 +59,19 @@ function Sidebar() {
 			},
 			{ owner: [], editor: [] }
 		);
+		console.log("grouped: ", grouped);
 		setGroupedData(grouped);
 	}, [data]);
 
 	const menuOptions = (
 		<>
 			<NewDocumentButton />
-
-			<hr className="border-t border-gray-300 my-4" />
-
-			{/* My Documents */}
 			<div className="flex py-4 flex-col space-y-4 md:max-w-36">
+				{/* My Documents */}
 				<h2 className="text-gray-500 font-semibold text-sm">My Documents</h2>
+				<hr className="border-t border-gray-300 my-4" />
 				{groupedData.owner.length === 0 ? (
-					<h2 className="text-gray-300 font-semibold text-sm">
+					<h2 className="text-gray-500 font-semibold text-sm">
 						You don{`'`}t have any documents.
 					</h2>
 				) : (
@@ -84,19 +83,16 @@ function Sidebar() {
 						/>
 					))
 				)}
-			</div>
 
-			<hr className="border-t border-gray-300 my-4" />
-
-			{/* Shared with me */}
-			<div className="flex py-4 flex-col space-y-4 md:max-w-36">
+				{/* Shared with me */}
 				<h2 className="text-gray-500 font-semibold text-sm">Shared with me</h2>
+				<hr className="border-t border-gray-300 my-4" />
 				{groupedData.editor.length === 0 ? (
 					<h2 className="text-gray-500 font-semibold text-sm">
 						No documents shared with you.
 					</h2>
 				) : (
-					groupedData.owner.map((doc) => (
+					groupedData.editor.map((doc) => (
 						<SidebarOption
 							key={doc.id}
 							id={doc.id}
