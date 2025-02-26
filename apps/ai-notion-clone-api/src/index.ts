@@ -23,7 +23,7 @@ app.get('/', async () => {
 	return new Response('Hello World');
 });
 
-app.post('/translate/', async (c) => {
+app.post('/translate', async (c) => {
 	const { data, source, target } = await c.req.json<{ data: string; source: string; target: string }>();
 
 	// Generate a summary of the text
