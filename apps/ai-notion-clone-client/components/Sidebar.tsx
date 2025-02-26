@@ -59,7 +59,6 @@ function Sidebar() {
 			},
 			{ owner: [], editor: [] }
 		);
-		console.log("grouped: ", grouped);
 		setGroupedData(grouped);
 	}, [data]);
 
