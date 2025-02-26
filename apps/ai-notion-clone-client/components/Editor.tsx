@@ -14,6 +14,7 @@ import "@blocknote/shadcn/style.css";
 
 import stringToColor from "@/lib/stringToColor";
 import AITranslation from "./AITranslation";
+import AIChat from "./AIChat";
 
 export type YJSDoc = Y.Doc;
 
@@ -79,7 +80,7 @@ function Editor() {
 		<div className="max-w-6xl mx-auto">
 			<div className="flex items-center gap-2 justify-end mb-10">
 				<AITranslation doc={doc} />
-				{/* AI Summary */}
+				<AIChat doc={doc} />
 
 				<Button className={style} onClick={() => setDarkMode((prev) => !prev)}>
 					{darkMode ? <SunIcon /> : <MoonIcon />}

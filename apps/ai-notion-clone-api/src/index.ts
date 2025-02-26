@@ -42,4 +42,22 @@ app.post('/translate', async (c) => {
 	return new Response(JSON.stringify(translate));
 });
 
+app.post('/chat', async (c) => {
+	const { data, question } = await c.req.json<{ data: string; question: string }>();
+
+	const messages = [
+		{
+			role: 'system',
+			content: 'You have to answer the question made by the user.',
+		},
+		{
+			role: 'user',
+			content: 'My question is: ' + question + ' ?, and the document is: ' + data + '.',
+		},
+	];
+
+	const response = await c.env.AI.run('@cf/deepseek-ai/deepseek-r1-distill-qwen-32b', { messages });
+
+	return new Response(JSON.stringify(response));
+});
 export default app;
