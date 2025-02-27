@@ -1,9 +1,11 @@
 {
 	"$schema": "https://turbo.build/schema.json",
+	"globalEnv": ["GOOGLE_CREDENTIALS", "CLERK_SECRET_KEY", "LIVEBLOCKS_SECRET_KEY"],
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build"],
-			"outputs": [".next/**", "!.next/cache/**"]
+			"outputs": [".next/**", "!.next/cache/**"],
+			"inputs": ["$TURBO_DEFAULT$", ".env", ".env.local"]
 		},
 		"check-types": {
 			"dependsOn": ["^check-types"]

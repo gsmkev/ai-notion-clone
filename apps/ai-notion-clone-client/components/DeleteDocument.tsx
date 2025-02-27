@@ -11,7 +11,6 @@ import {
 	DialogTrigger,
 } from "@/components/ui/dialog";
 import { useState, useTransition } from "react";
-import { Button } from "./ui/button";
 import Spinner from "./ui/spinner";
 import { usePathname, useRouter } from "next/navigation";
 import { deleteDocument } from "@/actions/actions";

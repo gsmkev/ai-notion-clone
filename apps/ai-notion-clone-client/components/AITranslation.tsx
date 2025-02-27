@@ -20,8 +20,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import { ArrowRight, BotIcon, LanguagesIcon } from "lucide-react";
-import { validateHeaderName } from "http";
+import { BotIcon, LanguagesIcon } from "lucide-react";
 import { extractTextFromRichText } from "@/lib/clean";
 
 type Language =
@@ -53,7 +52,6 @@ function AITranslation({ doc }: { doc: Y.Doc }) {
 	const [isOpen, setIsOpen] = useState(false);
 	const [isThinking, startTransition] = useTransition();
 	const [summary, setSummary] = useState("");
-	const [question, setQuestion] = useState("");
 	const [source, setSource] = useState<Language | null>(null);
 	const [target, setTarget] = useState<Language | null>(null);
 
@@ -145,11 +143,6 @@ function AITranslation({ doc }: { doc: Y.Doc }) {
 							</Button>
 						</div>
 					</form>
-					{question && (
-						<DialogFooter>
-							<p className="mt-5 text-gray-500">{question}</p>
-						</DialogFooter>
-					)}
 					{summary && (
 						<DialogFooter>
 							<div className="flex flex-col items-start max-h-96 overflow-y-scroll gap-2 p-5 bg-gray-100">

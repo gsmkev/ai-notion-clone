@@ -3,7 +3,8 @@
 	"version": "1.0.0",
 	"description": "Nextjs (shadcn + tailwind) and Vite (Cloudflare Workers) monorepo using turborepo.",
 	"scripts": {
-		"dev": "turbo dev"
+		"dev": "turbo dev",
+		"lint": "turbo lint"
 	},
 	"keywords": [],
 	"author": "",

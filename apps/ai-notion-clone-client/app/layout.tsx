@@ -2,10 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import {
 	ClerkProvider,
-	SignInButton,
-	SignedIn,
-	SignedOut,
-	UserButton,
 } from "@clerk/nextjs";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
