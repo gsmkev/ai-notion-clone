@@ -63,13 +63,17 @@ function Sidebar() {
 	}, [data]);
 
 	const menuOptions = (
-		<>
-			<NewDocumentButton />
-			<div className="flex py-4 flex-col space-y-4 md:max-w-36">
+		<div className="w-full flex flex-col space-y-4">
+			{user && (
+				<div className="absolute bottom-0 left-0 w-full p-2 md:static">
+					<NewDocumentButton className="w-full" />
+				</div>
+			)}
+			<div className="flex py-4 flex-col space-y-4 w-full">
 				{/* My Documents */}
 				<h2 className="text-gray-500 font-semibold text-sm">My Documents</h2>
 				<hr className="border-t border-gray-300 my-4" />
-				{groupedData.owner.length === 0 ? (
+				{groupedData.owner.length === 0 || !user ? (
 					<h2 className="text-gray-500 font-semibold text-sm">
 						You don{`'`}t have any documents.
 					</h2>
@@ -86,7 +90,7 @@ function Sidebar() {
 				{/* Shared with me */}
 				<h2 className="text-gray-500 font-semibold text-sm">Shared with me</h2>
 				<hr className="border-t border-gray-300 my-4" />
-				{groupedData.editor.length === 0 ? (
+				{groupedData.editor.length === 0 || !user ? (
 					<h2 className="text-gray-500 font-semibold text-sm">
 						No documents shared with you.
 					</h2>
@@ -100,7 +104,7 @@ function Sidebar() {
 					))
 				)}
 			</div>
-		</>
+		</div>
 	);
 
 	return (

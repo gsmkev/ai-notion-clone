@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { createNewDocument } from "@/actions/actions";
 
-function NewDocumentButton() {
+function NewDocumentButton({ className }: { className?: string }) {
 	const [isPending, startTransition] = useTransition();
 	const router = useRouter();
 
@@ -18,7 +18,11 @@ function NewDocumentButton() {
 	};
 
 	return (
-		<Button onClick={handleCreateNewDocument} disabled={isPending}>
+		<Button
+			onClick={handleCreateNewDocument}
+			disabled={isPending}
+			className={className}
+		>
 			{isPending ? (
 				<div className="animate-spin">
 					<Loader2 size={40} />

@@ -34,7 +34,7 @@ function Avatars() {
 	);
 
 	return (
-		<div className="flex gap-2 items-center">
+		<div className="flex flex-1 w-full gap-2 items-center justify-between md:justify-end">
 			<p className="font-light text-sm">Users currently editing this page</p>
 			<div className="flex -space-x-5">
 				{allArray.map((other, i) => (

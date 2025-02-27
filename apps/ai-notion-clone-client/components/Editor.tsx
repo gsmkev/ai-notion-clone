@@ -70,20 +70,20 @@ function Editor() {
 	if (!doc || !provider) {
 		return null;
 	}
-	const style = `hover:text-gray-700 ${
-		darkMode
-			? "text-gray-300 bg-gray-700 hover:bg-gray-100 "
-			: "text-gray-700 bg-gray-200 hover:bg-gray-300 "
-	}`;
 
 	return (
 		<div className="max-w-6xl mx-auto">
-			<div className="flex items-center gap-2 justify-end mb-10">
+			<div className="flex items-center gap-2 justify-between md:justify-end mb-10">
 				<AITranslation doc={doc} />
 				<AIChat doc={doc} />
 
-				<Button className={style} onClick={() => setDarkMode((prev) => !prev)}>
-					{darkMode ? <SunIcon /> : <MoonIcon />}
+				<Button
+					className={` ${
+						darkMode ? "text-white bg-black " : "text-black bg-white "
+					}`}
+					onClick={() => setDarkMode((prev) => !prev)}
+				>
+					{darkMode ? <MoonIcon /> : <SunIcon />}
 				</Button>
 			</div>
 

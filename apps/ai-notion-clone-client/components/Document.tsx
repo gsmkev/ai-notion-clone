@@ -2,8 +2,6 @@
 
 import { FormEvent, useEffect, useState, useTransition } from "react";
 import { Input } from "./ui/input";
-import { Button } from "./ui/button";
-import { Loader2 } from "lucide-react";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "@/firebase";
 import { useDocumentData } from "react-firebase-hooks/firestore";
@@ -17,7 +15,7 @@ import Avatars from "./Avatars";
 function Document({ id }: { id: string }) {
 	const [data, ,] = useDocumentData(doc(db, "documents", id));
 	const [input, setInput] = useState("");
-	const [isUpdating, startTransition] = useTransition();
+	const [, startTransition] = useTransition();
 	const isOwner = useOwner();
 
 	useEffect(() => {
@@ -37,31 +35,26 @@ function Document({ id }: { id: string }) {
 
 	return (
 		<div className="flex-1 bg-white p-5">
-			<div className="flex max-w-6xl mx-auto justify-between pb-5">
-				<form className="flex flex-1 space-x-2 " onSubmit={updateTitle}>
-					{/* Update title */}
-					<Input value={input} onChange={(e) => setInput(e.target.value)} />
-					<Button disabled={isUpdating} type="submit">
-						{isUpdating ? (
-							<div className="animate-spin">
-								<Loader2 size={40} />
-							</div>
-						) : (
-							"Update"
+			<div className="flex max-w-6xl mx-auto flex-col md:flex-row justify-between pb-5">
+				<div className="flex flex-col md:flex-row flex-1 space-y-2 md:space-y-0 md:space-x-2">
+					<Input
+						value={input}
+						onMouseLeave={updateTitle}
+						onChange={(e) => setInput(e.target.value)}
+					/>
+					<div className="flex justify-center space-x-2 md:space-x-2 md:flex-row md:items-center">
+						{isOwner && (
+							<>
+								<ManageUsers />
+								<InviteUser />
+								<DeleteDocument />
+							</>
 						)}
-					</Button>
-
-					{isOwner && (
-						<>
-							<InviteUser />
-							<DeleteDocument />
-						</>
-					)}
-				</form>
+					</div>
+				</div>
 			</div>
 
 			<div className="flex max-w-6xl mx-auto justify-between items-center mb-5">
-				<ManageUsers />
 				<Avatars />
 			</div>
 
